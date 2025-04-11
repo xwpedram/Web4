@@ -10,7 +10,8 @@ using Web4.Controllers;
 [Route("api/[controller]")]
 public class GenerateController : BaseController
 {
-    private readonly string _connectionString = "Server=DESKTOP-L0AVETU;Database=web4;User Id=sa;Password=1;TrustServerCertificate=True";
+    //private readonly string _connectionString = "Server=DESKTOP-L0AVETU;Database=web4;User Id=sa;Password=1;TrustServerCertificate=True";
+    private readonly string _connectionString = "Server=DESKTOP-01CIS7M\\MSSQL2022;Database=web4;User Id=sa;Password=1;TrustServerCertificate=True";
     private readonly string _openAiApiKey = "aa-brCPYPw4YdvShQdZ6jeuRYwFkAiyHodwocsBJVnUg54uiISt";
 
     [HttpPost]
@@ -45,7 +46,7 @@ public class GenerateController : BaseController
         }
 
         // Step 2: Generate Prompt
-        var fullPrompt = "<!-- تو یک طراح حرفه‌ای HTML,CSS,Js هستی. فقط HTML, CSS, Js , Bootstrap ساده و شیک تولید کن بدون توضیح اضافه. استایل داخل خود فایل باشد و بچز کد هیچ توضیحی اضافه ای ننویس. -->\n" + request.Content;
+        var fullPrompt = "<!-- \r\nGenerate clean, elegant HTML, CSS, and JavaScript using Bootstrap.\r\nKeep all styles inline or embedded within the same file.\r\nDo not include any extra explanations — only the code.\r\n-->\n" + request.Content;
 
         string resultHtml = "";
         int promptTokens = 0;
@@ -70,6 +71,7 @@ public class GenerateController : BaseController
 
                 var response = await httpClient.PostAsync(
                     "https://api.avalai.ir/v1/chat/completions",
+                    //"https://api.OpenAi.com/v1/chat/completions",
                     new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json")
                 );
 
@@ -128,7 +130,7 @@ public class GenerateController : BaseController
                 }
             }
 
-            return StatusCode(500, new { error = "خطا در تولید HTML." });
+            return StatusCode(500, new { error = "Error in generate HTML." });
         }
     }
 }
