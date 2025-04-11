@@ -12,7 +12,7 @@ public class GenerateController : BaseController
 {
     //private readonly string _connectionString = "Server=DESKTOP-L0AVETU;Database=web4;User Id=sa;Password=1;TrustServerCertificate=True";
     private readonly string _connectionString = "Server=DESKTOP-01CIS7M\\MSSQL2022;Database=web4;User Id=sa;Password=1;TrustServerCertificate=True";
-    private readonly string _openAiApiKey = "aa-brCPYPw4YdvShQdZ6jeuRYwFkAiyHodwocsBJVnUg54uiISt";
+    private readonly string _openAiApiKey = "aa-7VofG1dCFcVynpvrTLbjRcxmuPfjpzq3ImGoYQ5OCl8q1AAs";
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] GenerationRequest request)
