@@ -40,8 +40,7 @@ public class FAQController : BaseController
 
         var doc = JsonDocument.Parse(jsonResponse);
         var html = doc.RootElement.GetProperty("html").GetString();
-        html = html.Substring(8);
-        html = html.Substring(0, html.Length - 3);
+        html = StripCodeBlock(html);
         return Content(html, "text/html", Encoding.UTF8);
     }
 }
